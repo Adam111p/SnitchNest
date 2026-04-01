@@ -21,8 +21,8 @@ export class LogEventController {
   }
 
   @Get()
-  findAll() {
-    return this.logEventService.findAll();
+  async findAll() {
+    return await this.logEventService.findAll();
   }
 
   @Get(':id')

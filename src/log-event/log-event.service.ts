@@ -13,8 +13,8 @@ export class LogEventService {
     });
   }
 
-  findAll() {
-    return `This action returns all logEvent`;
+  async findAll() {
+    return await this.prisma.logEvent.findMany({ take: 50 });
   }
 
   findOne(id: number) {
