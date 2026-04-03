@@ -1,9 +1,11 @@
+import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsString,
   IsEnum,
   IsOptional,
   MaxLength,
+  IsDate,
 } from 'class-validator';
 import { LogLevel } from 'generated/prisma/enums';
 
@@ -28,4 +30,9 @@ export class CreateLogEventDto {
   @IsString()
   @IsOptional()
   context?: string;
+
+  @IsOptional()
+  @IsDate() //"2026-04-03T12:00:00Z"
+  @Type(() => Date) // z domyślną datą, byłby to czas zapisu a nie logu , a le gdyby daty nie było dobrze żeby była chociaż data zapisu.
+  createdAt?: Date;
 }
