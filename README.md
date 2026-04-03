@@ -31,7 +31,7 @@
 >     ```
 >     
 
-Dodałem do backendu skrypt żeby zasilić bazę  initBase.sh. Dzieki temu e to skrypt można zaszaleć z ilością i sprawdzić wydajność.  
+Dodałem do backendu skrypt żeby zasilić bazę  initBase.sh. Dzieki temu, że to skrypt można zaszaleć z ilością i sprawdzić wydajność.  
 Oczywiście zadziała z postawionym backendem i skonfigurowaną bazą jw.
 
 Starałem się nie wymyślać koła na nowo i użyłem raczej topowych rozwiązań.
