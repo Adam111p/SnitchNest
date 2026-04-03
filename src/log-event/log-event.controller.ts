@@ -6,10 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { LogEventService } from './log-event.service';
 import { CreateLogEventDto } from './dto/create-log-event.dto';
 import { UpdateLogEventDto } from './dto/update-log-event.dto';
+import { LogQueryDto } from './dto/logQueryDto';
 
 @Controller('log-event')
 export class LogEventController {
@@ -23,6 +27,17 @@ export class LogEventController {
   @Get()
   async findAll() {
     return await this.logEventService.findAll();
+  }
+
+  @Get('/countLevel')
+  countLevel() {
+    return this.logEventService.groupByLevel();
+  }
+
+  @Get('/search')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async findAllByQuery(@Query() query: LogQueryDto) {
+    return this.logEventService.findAllByQuery(query);
   }
 
   @Get(':id')

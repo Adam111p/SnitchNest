@@ -10,7 +10,7 @@ import { LogLevel } from 'generated/prisma/enums';
 export class CreateLogEventDto {
   @IsNotEmpty()
   @IsString()
-  message: string;
+  message!: string;
 
   @IsEnum(LogLevel)
   @IsOptional()
@@ -18,7 +18,7 @@ export class CreateLogEventDto {
 
   @IsString()
   @MaxLength(100) // Nasz bezpiecznik dla nazwy serwisu
-  serviceName: string;
+  serviceName!: string;
 
   @IsString()
   @IsOptional()
