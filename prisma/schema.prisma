@@ -4,15 +4,14 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-  moduleFormat    = "cjs"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
 }
-
 
 enum LogLevel {
   DEBUG
@@ -21,11 +20,17 @@ enum LogLevel {
   ERROR
   FATAL
 }
+
 model LogEvent {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   level       LogLevel @default(INFO)
   message     String
-  serviceName String   // np. "auth-service", "payment-gateway"
-  podName     String?  // np. "auth-service-747688-abc12"
+  serviceName String // np. "auth-service", "payment-gateway"
+  podName     String? // np. "auth-service-747688-abc12"
+
+  // Indeksy pojedyncze
+  @@index([level])
+  @@index([serviceName])
+  @@index([createdAt])
 }

@@ -34,4 +34,10 @@ export class LogQueryDto {
   @IsInt()
   @Min(1)
   pageSize: number = 10;
+
+  @IsOptional()
+  sortBy?: string;
+
+  @IsOptional()
+  sortOrder?: string;
 }

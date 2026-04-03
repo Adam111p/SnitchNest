@@ -24,8 +24,20 @@ export class LogEventService {
   }
 
   async findAllByQuery(query: LogQueryDto) {
-    const { dateFrom, dateTo, level, page, pageSize, serviceName } = query;
+    const {
+      dateFrom,
+      dateTo,
+      level,
+      page,
+      pageSize,
+      serviceName,
+      sortBy,
+      sortOrder,
+    } = query;
     const skip = (page - 1) * pageSize;
+    const order: Prisma.LogEventOrderByWithRelationInput = sortBy
+      ? { [sortBy]: sortOrder ?? 'desc' }
+      : { createdAt: 'desc' };
 
     const where: Prisma.LogEventWhereInput = {
       level: level,
@@ -41,7 +53,7 @@ export class LogEventService {
         where,
         skip,
         take: pageSize,
-        orderBy: { createdAt: 'desc' },
+        orderBy: order,
       }),
       this.prisma.logEvent.count({ where }),
     ]);
